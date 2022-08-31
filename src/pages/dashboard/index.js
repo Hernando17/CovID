@@ -1,14 +1,14 @@
 import React from 'react';
-import {Text, View} from 'native-base';
+import {Text, View, ScrollView} from 'native-base';
+import {colors} from '../../themes';
+import {Card} from '../../components';
 
 export default DashboardScreen = () => {
   return (
-    <View>
-      <Text>Dashboard</Text>
-      <Text>Dashboard</Text>
-      <Text>Dashboard</Text>
-      <Text>Dashboard</Text>
-      <Text>Dashboard</Text>
-    </View>
+    <ScrollView bg={colors.white}>
+      <Card>
+        <Text>Dashboard</Text>
+      </Card>
+    </ScrollView>
   );
 };

@@ -4,7 +4,7 @@ import {colors} from '../../themes';
 
 const Card = props => {
   return (
-    <Box width="100%" borderWidth={1} p={3} borderRadius={8}>
+    <Box width="100%" p={5} borderRadius={8} bg={colors.white}>
       {props.children}
     </Box>
   );

@@ -224,6 +224,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('my-upload-key.keystore')
+            storePassword 'CovID1234'
+            keyAlias 'release-CovID'
+            keyPassword 'CovID1234'
+        }
     }
     buildTypes {
         debug {

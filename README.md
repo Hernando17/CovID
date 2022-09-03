@@ -12,7 +12,7 @@ This Application was built using [React Native](https://reactnative.dev/)
 
 This Appplication was built for giving information about COVID-19 cases in Indonesia, and I named this App as CovID.
 
-## Source Of information
+## Source Of Information
 
 The information that show in this Application was taken from [Indonesia COVID-19 Information website](https://covid19.go.id/)
 

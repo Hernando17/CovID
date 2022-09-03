@@ -1,6 +1,6 @@
 const margins = {
   pageX: 5,
-  pageY: 10,
+  pageY: 6,
 };
 
 export {margins};

@@ -29,7 +29,7 @@ export default DashboardScreen = () => {
       <Text color={colors.white}>
         Last update on {data.update.penambahan.created}
       </Text>
-      <VStack my={4}>
+      <VStack mb={4}>
         <HStack justifyContent="space-between" mt={3}>
           <VStack width="48%">
             <Card>
@@ -58,7 +58,6 @@ export default DashboardScreen = () => {
               <Text fontSize={18} fontWeight="bold" color={colors.green} mr={2}>
                 Recovered
               </Text>
-
               <Text fontSize={18}>
                 {numberFormat(data.update.total.jumlah_sembuh)}
               </Text>

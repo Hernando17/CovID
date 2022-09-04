@@ -1,31 +1,27 @@
-import React, {useEffect} from 'react';
-import {
-  Text,
-  ScrollView,
-  HStack,
-  VStack,
-  Spinner,
-  Box,
-  Divider,
-  Spacer,
-} from 'native-base';
+import React, {useLayoutEffect} from 'react';
+import {Text, ScrollView, HStack, VStack, Divider, Spacer} from 'native-base';
 import {colors, margins, languages} from '../../themes';
 import {Card, Loading} from '../../components';
 import {useGetDataHarianQuery} from '../../redux/api/getDataHarian.api';
 import {numberFormat} from '../../utils';
-import {useSelector} from 'react-redux';
-import {languageSelector} from '../../redux/feature/languageSlice.redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  languageSelector,
+  setLanguage,
+} from '../../redux/feature/languageSlice.redux';
 
 export default DashboardScreen = () => {
   const {data, error, isLoading} = useGetDataHarianQuery();
   const savedLanguage = useSelector(languageSelector);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      console.log(savedLanguage);
-    }, 1000);
-    return () => clearInterval(interval);
-  });
+  if (savedLanguage.language == null) {
+    useLayoutEffect(() => {
+      dispatch(setLanguage({language: 'en'}));
+
+      return () => {};
+    }, []);
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -105,7 +101,6 @@ export default DashboardScreen = () => {
           <VStack>
             <HStack justifyContent="space-between">
               <Text fontSize={18}>
-                {' '}
                 {
                   languages[savedLanguage.language].dashboardPage.body.update
                     .newCases

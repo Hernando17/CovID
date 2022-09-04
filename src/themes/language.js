@@ -1,7 +1,7 @@
 const languages = {
   en: {
-    headerLabel: 'Dashboard',
     dashboardPage: {
+      headerLabel: 'Dashboard',
       head: {
         title: 'Indonesia COVID-19 Cases Data',
         lastUpdate: 'Last update on',
@@ -19,10 +19,18 @@ const languages = {
         },
       },
     },
+    settingPage: {
+      headerLabel: 'Setting',
+      setting: {
+        language: {
+          label: 'Language',
+        },
+      },
+    },
   },
   id: {
-    headerLabel: 'Dasbor',
     dashboardPage: {
+      headerLabel: 'Dasbor',
       head: {
         title: 'Data kasus COVID-19 Indonesia',
         lastUpdate: 'Pembaruan terakhir',
@@ -37,6 +45,14 @@ const languages = {
           newCases: 'Kasus Baru',
           recovered: 'Sembuh',
           dead: 'Meninggal',
+        },
+      },
+    },
+    settingPage: {
+      headerLabel: 'Pengaturan',
+      setting: {
+        language: {
+          label: 'Bahasa',
         },
       },
     },

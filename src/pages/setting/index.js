@@ -1,7 +1,7 @@
 import React, {useLayoutEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScrollView, HStack, VStack, Text, Select} from 'native-base';
-import {colors, margins} from '../../themes';
+import {colors, margins, languages} from '../../themes';
 import {
   setLanguage,
   languageSelector,
@@ -40,7 +40,7 @@ export default SettingScreen = () => {
     <ScrollView bg={colors.background} px={margins.pageX} py={margins.pageY}>
       <VStack>
         <Text color={colors.white} fontSize={18}>
-          Language
+          {languages[savedLanguage.language].settingPage.setting.language.label}
         </Text>
         <Select
           selectedValue={selectedLanguage}

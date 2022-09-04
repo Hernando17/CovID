@@ -33,7 +33,11 @@ export default DashboardScreen = () => {
         <HStack justifyContent="space-between" mt={3}>
           <VStack width="48%">
             <Card>
-              <Text fontSize={18} fontWeight="bold" color={colors.blue} mr={2}>
+              <Text
+                fontSize={18}
+                fontWeight="bold"
+                color={colors.blue[0]}
+                mr={2}>
                 Total Cases
               </Text>
               <Text fontSize={18}>

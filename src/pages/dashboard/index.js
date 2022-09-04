@@ -9,13 +9,23 @@ import {
   Divider,
   Spacer,
 } from 'native-base';
-import {colors, margins} from '../../themes';
+import {colors, margins, languages} from '../../themes';
 import {Card, Loading} from '../../components';
 import {useGetDataHarianQuery} from '../../redux/api/getDataHarian.api';
 import {numberFormat} from '../../utils';
+import {useSelector} from 'react-redux';
+import {languageSelector} from '../../redux/feature/languageSlice.redux';
 
 export default DashboardScreen = () => {
   const {data, error, isLoading} = useGetDataHarianQuery();
+  const savedLanguage = useSelector(languageSelector);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      console.log(savedLanguage);
+    }, 1000);
+    return () => clearInterval(interval);
+  });
 
   if (isLoading) {
     return <Loading />;
@@ -24,10 +34,12 @@ export default DashboardScreen = () => {
   return (
     <ScrollView bg={colors.background} px={margins.pageX} py={margins.pageY}>
       <Text color={colors.white} fontSize={20} fontWeight="bold">
-        Indonesia COVID-19 Cases Data
+        {languages[savedLanguage.language].dashboardPage.head.title}
       </Text>
       <Text color={colors.white}>
-        Last update on {data.update.penambahan.created}
+        {languages[savedLanguage.language].dashboardPage.head.lastUpdate +
+          ' ' +
+          data.update.penambahan.created}
       </Text>
       <VStack mb={4}>
         <HStack justifyContent="space-between" mt={3}>
@@ -38,7 +50,10 @@ export default DashboardScreen = () => {
                 fontWeight="bold"
                 color={colors.blue[0]}
                 mr={2}>
-                Total Cases
+                {
+                  languages[savedLanguage.language].dashboardPage.body
+                    .totalCases
+                }
               </Text>
               <Text fontSize={18}>
                 {numberFormat(data.update.total.jumlah_positif)}
@@ -48,7 +63,10 @@ export default DashboardScreen = () => {
           <VStack width="48%">
             <Card>
               <Text fontSize={18} fontWeight="bold" color={colors.red} mr={2}>
-                Active Cases
+                {
+                  languages[savedLanguage.language].dashboardPage.body
+                    .activeCases
+                }
               </Text>
               <Text fontSize={18}>
                 {numberFormat(data.update.total.jumlah_dirawat)}
@@ -60,7 +78,7 @@ export default DashboardScreen = () => {
           <VStack width="48%">
             <Card>
               <Text fontSize={18} fontWeight="bold" color={colors.green} mr={2}>
-                Recovered
+                {languages[savedLanguage.language].dashboardPage.body.recovered}
               </Text>
               <Text fontSize={18}>
                 {numberFormat(data.update.total.jumlah_sembuh)}
@@ -70,7 +88,7 @@ export default DashboardScreen = () => {
           <VStack width="48%">
             <Card>
               <Text fontSize={18} fontWeight="bold" color={colors.gray}>
-                Dead
+                {languages[savedLanguage.language].dashboardPage.body.dead}
               </Text>
               <Text fontSize={18}>
                 {numberFormat(data.update.total.jumlah_meninggal)}
@@ -80,13 +98,19 @@ export default DashboardScreen = () => {
         </HStack>
       </VStack>
       <Text color={colors.white} fontSize={20} fontWeight="bold">
-        Update
+        {languages[savedLanguage.language].dashboardPage.body.update.title}
       </Text>
       <VStack mt={2}>
         <Card>
           <VStack>
             <HStack justifyContent="space-between">
-              <Text fontSize={18}>New Cases</Text>
+              <Text fontSize={18}>
+                {' '}
+                {
+                  languages[savedLanguage.language].dashboardPage.body.update
+                    .newCases
+                }
+              </Text>
               <Text fontSize={18} color={colors.red}>
                 {numberFormat(data.update.penambahan.jumlah_positif)}
               </Text>
@@ -94,7 +118,12 @@ export default DashboardScreen = () => {
             <Spacer size={2} />
             <Divider />
             <HStack justifyContent="space-between" mt={2}>
-              <Text fontSize={18}>Recovered</Text>
+              <Text fontSize={18}>
+                {
+                  languages[savedLanguage.language].dashboardPage.body.update
+                    .recovered
+                }
+              </Text>
               <Text fontSize={18} color={colors.green}>
                 {numberFormat(data.update.penambahan.jumlah_sembuh)}
               </Text>
@@ -102,7 +131,12 @@ export default DashboardScreen = () => {
             <Spacer size={2} />
             <Divider />
             <HStack justifyContent="space-between" mt={2}>
-              <Text fontSize={18}>Dead</Text>
+              <Text fontSize={18}>
+                {
+                  languages[savedLanguage.language].dashboardPage.body.update
+                    .dead
+                }
+              </Text>
               <Text fontSize={18} color={colors.gray}>
                 {numberFormat(data.update.penambahan.jumlah_meninggal)}
               </Text>

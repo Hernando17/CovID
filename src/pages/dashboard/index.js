@@ -1,27 +1,15 @@
-import React, {useLayoutEffect} from 'react';
+import React from 'react';
 import {Text, ScrollView, HStack, VStack, Divider, Spacer} from 'native-base';
 import {colors, margins, languages} from '../../themes';
 import {Card, Loading} from '../../components';
 import {useGetDataHarianQuery} from '../../redux/api/getDataHarian.api';
 import {numberFormat} from '../../utils';
-import {useSelector, useDispatch} from 'react-redux';
-import {
-  languageSelector,
-  setLanguage,
-} from '../../redux/feature/languageSlice.redux';
+import {useSelector} from 'react-redux';
+import {languageSelector} from '../../redux/feature/languageSlice.redux';
 
 export default DashboardScreen = () => {
   const {data, error, isLoading} = useGetDataHarianQuery();
   const savedLanguage = useSelector(languageSelector);
-  const dispatch = useDispatch();
-
-  if (savedLanguage.language == null) {
-    useLayoutEffect(() => {
-      dispatch(setLanguage({language: 'en'}));
-
-      return () => {};
-    }, []);
-  }
 
   if (isLoading) {
     return <Loading />;

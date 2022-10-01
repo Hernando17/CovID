@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-  ScrollView,
-  VStack,
-  Text,
-  Box,
-  HStack,
-  Avatar,
-  Heading,
-  FlatList,
-  Spacer,
-  View,
-  Input,
-} from 'native-base';
+import {VStack, Text, HStack, FlatList, View, Input} from 'native-base';
 import {colors, margins} from '../../themes';
 import {useGetDataProvinsiQuery} from '../../redux/api/getDataProvinsi.api';
 import {Card, Loading} from '../../components';
-import {search} from '../../utils';
+import {search, numberFormat} from '../../utils';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
 export default ProvinceScreen = () => {
   const {data, error, isLoading} = useGetDataProvinsiQuery();
@@ -47,9 +37,12 @@ export default ProvinceScreen = () => {
         renderItem={({item}) => (
           <View px={margins.pageX} py={2}>
             <Card>
-              <HStack justifyContent="space-between">
+              <HStack justifyContent="space-between" alignItems="center">
                 <Text>{item.key}</Text>
-                <Text>{item.jumlah_kasus}</Text>
+                <HStack alignItems="center">
+                  <Text mr={2}>{numberFormat(item.jumlah_kasus)}</Text>
+                  <FontAwesomeIcon icon={faChevronRight} />
+                </HStack>
               </HStack>
             </Card>
           </View>

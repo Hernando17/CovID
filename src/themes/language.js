@@ -27,6 +27,9 @@ const languages = {
         },
       },
     },
+    provincePage: {
+      headerLabel: 'Province',
+    },
   },
   id: {
     dashboardPage: {

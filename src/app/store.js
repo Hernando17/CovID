@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query';
-import {DataHarianApi} from '../redux/api/getDataHarian.api';
+import {DataHarianApi, DataProvinsiApi} from '../redux/api/index.api';
 import {combineReducers} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   ),
 
   [DataHarianApi.reducerPath]: DataHarianApi.reducer,
+  [DataProvinsiApi.reducerPath]: DataProvinsiApi.reducer,
 });
 
 export const store = configureStore({
@@ -23,7 +24,9 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(DataHarianApi.middleware),
+    })
+      .concat(DataHarianApi.middleware)
+      .concat(DataProvinsiApi.middleware),
 });
 
 export const persistor = persistStore(store);

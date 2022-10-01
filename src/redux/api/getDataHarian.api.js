@@ -7,6 +7,7 @@ export const DataHarianApi = createApi({
   endpoints: builder => ({
     GetDataHarian: builder.query({
       query: () => `update.json`,
+      transformResponse: response => response,
     }),
   }),
 });

@@ -1,4 +1,5 @@
 import DashboardScreen from './dashboard';
 import SettingScreen from './setting';
+import ProvinceScreen from './province';
 
-export {DashboardScreen, SettingScreen};
+export {DashboardScreen, SettingScreen, ProvinceScreen};

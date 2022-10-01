@@ -6,7 +6,7 @@ import {colors, languages} from '../themes';
 import {useSelector} from 'react-redux';
 import {languageSelector} from '../redux/feature/languageSlice.redux';
 
-import {DashboardScreen, SettingScreen} from '../pages';
+import {DashboardScreen, SettingScreen, ProvinceScreen} from '../pages';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -16,25 +16,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          headerStyle: {
-            height: 70,
-            backgroundColor: colors.blue[1],
-          },
-          headerTintColor: colors.white,
-          headerTitleStyle: {
-            color: 'white',
-          },
-          drawerStyle: {
-            backgroundColor: colors.background,
-            width: 240,
-          },
-          drawerLabelStyle: {
-            color: 'white',
-          },
-          drawerActiveBackgroundColor: colors.blue[1],
-        }}>
+      <Drawer.Navigator screenOptions={DrawerStyle}>
         <Drawer.Screen
           name="Dashboard"
           component={DashboardScreen}
@@ -42,6 +24,15 @@ const App = () => {
             title: languages[savedLanguage.language].dashboardPage.headerLabel,
             drawerLabel:
               languages[savedLanguage.language].dashboardPage.headerLabel,
+          }}
+        />
+        <Drawer.Screen
+          name="Province"
+          component={ProvinceScreen}
+          options={{
+            title: languages[savedLanguage.language].provincePage.headerLabel,
+            drawerLabel:
+              languages[savedLanguage.language].provincePage.headerLabel,
           }}
         />
         <Drawer.Screen
@@ -56,6 +47,25 @@ const App = () => {
       </Drawer.Navigator>
     </NavigationContainer>
   );
+};
+
+const DrawerStyle = {
+  headerStyle: {
+    height: 70,
+    backgroundColor: colors.blue[1],
+  },
+  headerTintColor: colors.white,
+  headerTitleStyle: {
+    color: 'white',
+  },
+  drawerStyle: {
+    backgroundColor: colors.background,
+    width: 240,
+  },
+  drawerLabelStyle: {
+    color: 'white',
+  },
+  drawerActiveBackgroundColor: colors.blue[1],
 };
 
 export default App;

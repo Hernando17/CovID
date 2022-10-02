@@ -2,19 +2,20 @@ import React from 'react';
 import {VStack, Text, HStack, FlatList, View, Input} from 'native-base';
 import {colors, margins} from '../../themes';
 import {useGetDataProvinsiQuery} from '../../redux/api/getDataProvinsi.api';
-import {Card, Loading} from '../../components';
+import {Card, Loading, Error502} from '../../components';
 import {search, numberFormat} from '../../utils';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
 export default ProvinceScreen = () => {
-  const {data, error, isLoading} = useGetDataProvinsiQuery();
+  const {data, error, isLoading, isError} = useGetDataProvinsiQuery();
   const [inputSearch, setInputSearch] = React.useState('');
 
   if (isLoading) {
     return <Loading />;
+  } else if (isError && error.originalStatus == '502') {
+    return <Error502 />;
   }
-
   return (
     <VStack flex={1} bg={colors.background}>
       <VStack px={margins.pageX} py={margins.pageY}>
